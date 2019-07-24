@@ -1,0 +1,4 @@
+git add * 
+git stash
+git pull
+exec bash
