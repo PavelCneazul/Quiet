@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Locks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LocksController extends Controller
 {
     public function getLocks()
     {
-        $locks = Locks::all();
+        //$locks = DB::select('select status from locks where code = "hell"');
+        $locks = DB::table('locks')->status;
         $response = [
-            'locks2' => $locks
+            'test' => $locks
         ];
-        return response()->json($response, 200);
-
+        //return response()->json($response, 200);
+        return $locks;
     }
 
     public function postLock(Request $request)
