@@ -18,8 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/tenants', [
-    'uses' => 'TenantController@getTenant'
+Route::get('/status', [
+    'uses' => 'Locks2Controller@getLocks'
+]);
+
+Route::post('/lock', [
+    'uses' => 'Locks2Controller@postLock'
 ]);
 
 
