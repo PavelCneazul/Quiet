@@ -1,4 +1,4 @@
 git add .
-git commit -m "Message"
+git commit -m $1
 git push
 exec bash
