@@ -10,13 +10,13 @@ class LocksController extends Controller
 {
     public function getLocks()
     {
-        //$locks = DB::select('select status from locks where code = "hell"');
-        $locks = DB::table('locks')->status;
+        $locks = DB::select('select * from locks');
+
         $response = [
             'test' => $locks
         ];
-        //return response()->json($response, 200);
-        return $locks;
+        return response()->json($response, 200);
+
     }
 
     public function postLock(Request $request)

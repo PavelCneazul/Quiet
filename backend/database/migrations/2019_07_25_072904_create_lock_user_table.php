@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocksTable extends Migration
+class CreateLockUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,11 @@ class CreateLocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('locks', function (Blueprint $table) {
+        Schema::create('lock_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("code");
-            $table->string("status")->default("closed");
+            $table->unsignedBigInteger("lock_id");
+            $table->unsignedBigInteger("user_id");
+            $table->boolean("access");
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -30,6 +31,6 @@ class CreateLocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locks');
+        Schema::dropIfExists('lock_user');
     }
 }
