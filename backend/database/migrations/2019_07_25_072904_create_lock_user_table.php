@@ -18,7 +18,7 @@ class CreateLockUserTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger("lock_id");
             $table->unsignedBigInteger("user_id");
-            $table->boolean("access");
+            $table->boolean("access")->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

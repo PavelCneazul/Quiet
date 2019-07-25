@@ -1,5 +1,7 @@
 <?php
 
+use App\Lock;
+use App\User;
 use Illuminate\Http\Request;
 
 /*
@@ -14,12 +16,22 @@ use Illuminate\Http\Request;
 */
 
 
-Route::get('/status', [
+Route::get('/locks', [
     'uses' => 'LocksController@getLocks'
 ]);
 
 Route::post('/lock', [
     'uses' => 'LocksController@postLock'
 ]);
+
+Route::get('/lock-users', function (){
+    $user = User::first();
+
+    $locks = Lock::all();
+
+    $user->locks()->syncWithoutDetaching([1]);
+
+    dd($locks);
+});
 
 

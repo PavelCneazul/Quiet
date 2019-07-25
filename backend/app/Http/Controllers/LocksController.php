@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Locks;
+use App\Lock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +10,7 @@ class LocksController extends Controller
 {
     public function getLocks()
     {
-        $locks = DB::select('select status from locks');
+        $locks = DB::select('select * from locks');
 
         $response = [
             'test' => $locks
@@ -21,7 +21,7 @@ class LocksController extends Controller
 
     public function postLock(Request $request)
     {
-        $lock = new Locks();
+        $lock = new Lock();
         $lock->code = $request->input('code');
         $lock->save();
         return response()->json(['lock' => $lock], 201);
