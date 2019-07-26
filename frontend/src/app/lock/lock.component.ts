@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Lock} from './lock.interface';
 
 @Component({
@@ -7,7 +7,7 @@ import {Lock} from './lock.interface';
   styleUrls: ['./lock.component.css']
 })
 export class LockComponent implements OnInit {
-  lock: Lock;
+  @Input() lock: Lock;
   constructor() { }
 
   ngOnInit() {

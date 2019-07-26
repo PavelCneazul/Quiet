@@ -1,3 +1,3 @@
-<button class="btn btn-primary">Get Locks</button>
+<button class="btn btn-primary" (click)="onGetLocks()">Get Locks</button>
 <hr>
-<app-locks *ngFor="let lock of locks"></app-locks>
+<app-lock *ngFor="let lock of locks" [lock]="lock"></app-lock>

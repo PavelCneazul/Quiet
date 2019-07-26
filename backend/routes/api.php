@@ -31,7 +31,10 @@ Route::get('/lock-users', function (){
 
     $user->locks()->syncWithoutDetaching([1]);
 
-    dd($locks);
+    $response = [
+        "locks" => $locks
+    ];
+    return response()->json($response, 200 );
 });
 
 
