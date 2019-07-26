@@ -3,6 +3,7 @@
 use App\Lock;
 use App\User;
 use Illuminate\Http\Request;
+use App\Lock_User;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +26,33 @@ Route::post('/lock', [
 ]);
 
 Route::get('/lock-users', function (){
-    $user = User::first();
+    $user = User::all();
 
     $locks = Lock::all();
 
-    $user->locks()->syncWithoutDetaching([1]);
+    $user->locks()->syncWithoutDetaching([1,2,3]);
 
     $response = [
-        "locks" => $locks
+        "locks" => $user
     ];
     return response()->json($response, 200 );
+});
+
+Route::get('/locks-and-users' ,[
+    'uses' => 'Lock_UserController@getLock_User'
+]);
+
+Route::get('/users',[
+    'uses' => 'UserController@getUsers'
+]);
+
+Route::get('/test',function(){
+    $lock_user = Lock_User::all();
+    $response = [
+        "lock_user" => $lock_user
+    ];
+    return response()->json($response, 200 );
+
 });
 
 

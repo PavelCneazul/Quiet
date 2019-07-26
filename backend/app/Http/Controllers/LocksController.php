@@ -10,7 +10,7 @@ class LocksController extends Controller
 {
     public function getLocks()
     {
-        $locks = DB::select('select * from locks');
+        $locks = Lock::all();
 
         $response = [
             'test' => $locks
